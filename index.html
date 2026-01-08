@@ -78,16 +78,15 @@
     <!-- Application Structure Plan: 
          1. Executive Dashboard: High-level KPI (1000 Landlords) and core strategic pivot.
          2. Market Intelligence: Visualizing the "Time Gap" between LTB hearings and Elite Screening.
-         3. 3-Month Roadmap: Interactive timeline showing the evolution from Jan (Foundation) to Mar (Scale).
+         3. 3-Month Roadmap: Interactive timeline showing the evolution from Jan (Foundation) to Mar (Scale), featuring a redirect to the detailed Jan plan.
          4. Content Tactical Grid: Filterable view of platform-specific content (LinkedIn/IG/TikTok).
-         5. Growth Engine: Ad Budget allocation tool (Leads removed per request) and Influencer Targets.
+         5. Growth Engine: Ad Budget allocation tool and Influencer Targets.
     -->
 
     <!-- Visualization & Content Choices:
-         1. Risk Analysis: Bar Chart comparing LTB delays vs. Screening speed. Goal: Inform.
-         2. Ad Spend: Doughnut Chart showing channel allocation. Goal: Compare/Plan.
-         3. Strategy Delivery: Filterable HTML grid for content tactics. Goal: Organize.
-         4. NO SVG/Mermaid used as per constraints. All icons handled via HTML/CSS shapes or text-based indicators.
+         1. Risk Analysis: Bar Chart comparing LTB delays vs. Screening speed.
+         2. Ad Spend: Doughnut Chart showing channel allocation.
+         3. Redirect: Direct external link to Google Doc for the granular Jan Content Plan.
     -->
     
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
@@ -103,11 +102,15 @@
                     <span class="text-xl md:text-2xl font-bold tracking-tight text-stone-900">Elite Tenants <span class="hidden sm:inline text-xs font-normal text-stone-500 uppercase tracking-widest ml-2">Q1 Strategy</span></span>
                 </div>
                 <!-- Desktop Nav -->
-                <div class="hidden md:flex space-x-8 items-center">
-                    <button onclick="navigate('market')" class="nav-btn nav-active text-stone-600 hover:text-black px-3 py-2 text-sm transition-colors" id="btn-market">Market Intel</button>
-                    <button onclick="navigate('roadmap')" class="nav-btn text-stone-600 hover:text-black px-3 py-2 text-sm transition-colors" id="btn-roadmap">Roadmap</button>
-                    <button onclick="navigate('content')" class="nav-btn text-stone-600 hover:text-black px-3 py-2 text-sm transition-colors" id="btn-content">Content Plan</button>
-                    <button onclick="navigate('growth')" class="nav-btn text-stone-600 hover:text-black px-3 py-2 text-sm transition-colors" id="btn-growth">Growth Engine</button>
+                <div class="hidden md:flex space-x-6 items-center">
+                    <button onclick="navigate('market')" class="nav-btn nav-active text-stone-600 hover:text-black px-1 py-2 text-sm transition-colors" id="btn-market">Market Intel</button>
+                    <button onclick="navigate('roadmap')" class="nav-btn text-stone-600 hover:text-black px-1 py-2 text-sm transition-colors" id="btn-roadmap">Roadmap</button>
+                    <button onclick="navigate('content')" class="nav-btn text-stone-600 hover:text-black px-1 py-2 text-sm transition-colors" id="btn-content">Content Plan</button>
+                    <button onclick="navigate('growth')" class="nav-btn text-stone-600 hover:text-black px-1 py-2 text-sm transition-colors" id="btn-growth">Growth Engine</button>
+                    <a href="https://docs.google.com/document/d/1vvWqneR4MriWSTnBMjOpMgW3tbm1mMqi4k1MjtgJYhg/edit?tab=t.0" target="_blank" class="bg-stone-900 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-stone-800 transition flex items-center gap-2">
+                        <span>Jan Plan Docs</span>
+                        <span>↗</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -117,6 +120,7 @@
             <button onclick="navigate('roadmap')" class="px-2 whitespace-nowrap">Roadmap</button>
             <button onclick="navigate('content')" class="px-2 whitespace-nowrap">Content</button>
             <button onclick="navigate('growth')" class="px-2 whitespace-nowrap">Growth</button>
+            <a href="https://docs.google.com/document/d/1vvWqneR4MriWSTnBMjOpMgW3tbm1mMqi4k1MjtgJYhg/edit?tab=t.0" target="_blank" class="px-2 text-stone-900 font-bold whitespace-nowrap">Docs ↗</a>
         </div>
     </nav>
 
@@ -195,29 +199,34 @@
                 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <!-- Jan -->
-                    <div class="p-6 rounded-lg border border-stone-200 bg-stone-50">
-                        <div class="text-xs font-bold text-stone-400 uppercase tracking-widest mb-2">Phase 01 • JAN</div>
+                    <div class="p-6 rounded-lg border-2 border-stone-900 bg-white shadow-md scale-105 z-10 flex flex-col">
+                        <div class="text-xs font-bold text-stone-900 uppercase tracking-widest mb-2">Phase 01 • JAN</div>
                         <h3 class="text-lg font-bold text-stone-900 mb-3">Foundation</h3>
                         <p class="text-sm text-stone-600 mb-4">Establishing the "Smarter Evaluation" brand pillars. Focus on AI screening and basic workflow.</p>
-                        <ul class="text-xs text-stone-500 space-y-2">
+                        <ul class="text-xs text-stone-500 space-y-2 mb-6">
                             <li class="flex items-center"><span class="mr-2">●</span> "A credit score isn't the story"</li>
                             <li class="flex items-center"><span class="mr-2">●</span> Launch LinkedIn B2B Presence</li>
                             <li class="flex items-center"><span class="mr-2">●</span> Tenant Credit Builder Intro</li>
                         </ul>
+                        <div class="mt-auto">
+                            <a href="https://docs.google.com/document/d/1vvWqneR4MriWSTnBMjOpMgW3tbm1mMqi4k1MjtgJYhg/edit?tab=t.0" target="_blank" class="block text-center bg-stone-100 py-3 rounded-lg text-xs font-bold text-stone-900 border border-stone-200 hover:bg-stone-200 transition">
+                                View Full Jan Plan Docs ↗
+                            </a>
+                        </div>
                     </div>
                     <!-- Feb -->
-                    <div class="p-6 rounded-lg border-2 border-stone-900 bg-white shadow-md scale-105 z-10">
-                        <div class="text-xs font-bold text-stone-900 uppercase tracking-widest mb-2">Phase 02 • FEB</div>
+                    <div class="p-6 rounded-lg border border-stone-200 bg-stone-50 flex flex-col">
+                        <div class="text-xs font-bold text-stone-400 uppercase tracking-widest mb-2">Phase 02 • FEB</div>
                         <h3 class="text-lg font-bold text-stone-900 mb-3">Risk & Security</h3>
                         <p class="text-sm text-stone-600 mb-4">Aggressive focus on Fraud Prevention. Deconstructing fake documents to build authority.</p>
-                        <ul class="text-xs text-stone-800 space-y-2 font-medium">
+                        <ul class="text-xs text-stone-500 space-y-2">
                             <li class="flex items-center"><span class="mr-2 text-red-500">●</span> Spotting Fake Paystubs Series</li>
                             <li class="flex items-center"><span class="mr-2 text-red-500">●</span> LTB Survival Guide for Landlords</li>
                             <li class="flex items-center"><span class="mr-2 text-red-500">●</span> "Professional Tenant" Red Flags</li>
                         </ul>
                     </div>
                     <!-- Mar -->
-                    <div class="p-6 rounded-lg border border-stone-200 bg-stone-50">
+                    <div class="p-6 rounded-lg border border-stone-200 bg-stone-50 flex flex-col">
                         <div class="text-xs font-bold text-stone-400 uppercase tracking-widest mb-2">Phase 03 • MAR</div>
                         <h3 class="text-lg font-bold text-stone-900 mb-3">Scale & Speed</h3>
                         <p class="text-sm text-stone-600 mb-4">Targeting Property Managers and portfolios. Positioning for the Spring market rush.</p>
@@ -235,7 +244,10 @@
         <section id="view-content" class="hidden fade-in space-y-6">
             <div class="bg-white p-8 rounded-xl shadow-sm border border-stone-200">
                 <div class="flex flex-col md:flex-row md:items-center justify-between mb-8">
-                    <h2 class="text-2xl font-bold text-stone-900">Cross-Platform Tactical Plan</h2>
+                    <div>
+                        <h2 class="text-2xl font-bold text-stone-900">Tactical Content Execution</h2>
+                        <a href="https://docs.google.com/document/d/1vvWqneR4MriWSTnBMjOpMgW3tbm1mMqi4k1MjtgJYhg/edit?tab=t.0" target="_blank" class="text-xs text-stone-400 hover:text-stone-900 transition underline">Access original Jan Plan document →</a>
+                    </div>
                     <div class="flex flex-wrap gap-2 mt-4 md:mt-0">
                         <button onclick="filterContent('all')" class="filter-btn px-4 py-1.5 rounded-full text-sm bg-stone-900 text-white transition">All</button>
                         <button onclick="filterContent('linkedin')" class="filter-btn px-4 py-1.5 rounded-full text-sm bg-white border border-stone-200 text-stone-600 hover:bg-stone-50 transition">LinkedIn</button>
@@ -271,15 +283,6 @@
                         <h4 class="font-bold text-stone-900 mb-2 leading-tight">Document Red Flag ASMR</h4>
                         <p class="text-sm text-stone-600 mb-4">Fast-paced cuts of spotting pixelated fonts on fake bank statements.</p>
                         <div class="bg-stone-50 p-3 rounded text-xs text-stone-500 italic">"If they hand you a paper credit report... RUN. 🚩"</div>
-                    </div>
-                    <!-- LinkedIn Feb -->
-                    <div class="content-card linkedin p-5 rounded-xl border border-stone-100 bg-white hover:shadow-md transition">
-                        <div class="flex justify-between mb-3">
-                            <span class="text-xs font-bold text-blue-600 uppercase">LinkedIn • Feb</span>
-                        </div>
-                        <h4 class="font-bold text-stone-900 mb-2 leading-tight">LTB Survival Case Study</h4>
-                        <p class="text-sm text-stone-600 mb-4">Deep dive into a $25,000 loss story caused by a "Professional Tenant".</p>
-                        <div class="bg-stone-50 p-3 rounded text-xs text-stone-500 italic">"Verification is cheaper than eviction. Data vs. Guesswork."</div>
                     </div>
                 </div>
             </div>
