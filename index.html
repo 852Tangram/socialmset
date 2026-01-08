@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Tenants: Q1 Growth Strategy (SPA)</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F5F5F0; /* Clean Beige/Warm Neutral base */
+            color: #1C1917; /* Stone-900 */
+        }
+
+        /* Chart Container Styling - Mandatory per requirements */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px; /* Base height */
+            max-height: 400px;
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #E5E5E5; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #A8A29E; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #78716C; 
+        }
+
+        /* Navigation Active State */
+        .nav-active {
+            border-bottom: 2px solid #1C1917;
+            font-weight: 600;
+            color: #1C1917;
+        }
+
+        /* Transitions */
+        .fade-in {
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+
+    <!-- Placeholder Comments Required -->
+    <!-- Chosen Palette: Warm Neutrals (Stone/Beige) matching the #F5F5F0 base. Dark Stone (#1C1917) for typography. Accents in Professional Blue and Crisis Red. -->
+    
+    <!-- Application Structure Plan: 
+         1. Executive Dashboard: High-level KPI (1000 Landlords) and core strategic pivot.
+         2. Market Intelligence: Visualizing the "Time Gap" between LTB hearings and Elite Screening.
+         3. 3-Month Roadmap: Interactive timeline showing the evolution from Jan (Foundation) to Mar (Scale).
+         4. Content Tactical Grid: Filterable view of platform-specific content (LinkedIn/IG/TikTok).
+         5. Growth Engine: Ad Budget allocation tool (Leads removed per request) and Influencer Targets.
+    -->
+
+    <!-- Visualization & Content Choices:
+         1. Risk Analysis: Bar Chart comparing LTB delays vs. Screening speed. Goal: Inform.
+         2. Ad Spend: Doughnut Chart showing channel allocation. Goal: Compare/Plan.
+         3. Strategy Delivery: Filterable HTML grid for content tactics. Goal: Organize.
+         4. NO SVG/Mermaid used as per constraints. All icons handled via HTML/CSS shapes or text-based indicators.
+    -->
+    
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+</head>
+<body class="bg-[#F5F5F0]">
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-xl md:text-2xl font-bold tracking-tight text-stone-900">Elite Tenants <span class="hidden sm:inline text-xs font-normal text-stone-500 uppercase tracking-widest ml-2">Q1 Strategy</span></span>
+                </div>
+                <!-- Desktop Nav -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <button onclick="navigate('market')" class="nav-btn nav-active text-stone-600 hover:text-black px-3 py-2 text-sm transition-colors" id="btn-market">Market Intel</button>
+                    <button onclick="navigate('roadmap')" class="nav-btn text-stone-600 hover:text-black px-3 py-2 text-sm transition-colors" id="btn-roadmap">Roadmap</button>
+                    <button onclick="navigate('content')" class="nav-btn text-stone-600 hover:text-black px-3 py-2 text-sm transition-colors" id="btn-content">Content Plan</button>
+                    <button onclick="navigate('growth')" class="nav-btn text-stone-600 hover:text-black px-3 py-2 text-sm transition-colors" id="btn-growth">Growth Engine</button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Nav Menu -->
+        <div class="md:hidden flex justify-around bg-stone-100 py-3 text-xs border-t border-stone-200 font-medium overflow-x-auto">
+            <button onclick="navigate('market')" class="px-2 whitespace-nowrap">Market Intel</button>
+            <button onclick="navigate('roadmap')" class="px-2 whitespace-nowrap">Roadmap</button>
+            <button onclick="navigate('content')" class="px-2 whitespace-nowrap">Content</button>
+            <button onclick="navigate('growth')" class="px-2 whitespace-nowrap">Growth</button>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+        <!-- Intro / KPI Header -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-in">
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                <h3 class="text-stone-500 text-xs uppercase font-bold tracking-wider">Growth Target</h3>
+                <div class="mt-2 flex items-baseline">
+                    <span class="text-4xl font-bold text-stone-900">1,000+</span>
+                    <span class="ml-2 text-sm text-stone-600">Landlords</span>
+                </div>
+                <p class="mt-2 text-xs text-stone-400">Main Focus: GTA Region</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                <h3 class="text-stone-500 text-xs uppercase font-bold tracking-wider">Strategy Pivot</h3>
+                <div class="mt-2">
+                    <span class="text-xl font-bold text-stone-900">Fraud Verification</span>
+                </div>
+                <p class="mt-2 text-xs text-stone-400">Positioning: The Security Standard</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200 flex flex-col justify-center">
+                <h3 class="text-stone-500 text-xs uppercase font-bold tracking-wider mb-2">Q1 Roadmap Progress</h3>
+                <div class="w-full bg-stone-100 rounded-full h-2.5 mb-1">
+                    <div class="bg-stone-800 h-2.5 rounded-full" style="width: 25%"></div>
+                </div>
+                <span class="text-xs text-stone-500 mt-1">Jan: Foundation Phase Active</span>
+            </div>
+        </div>
+
+        <!-- SECTION 1: MARKET INTELLIGENCE -->
+        <section id="view-market" class="fade-in space-y-6">
+            <div class="bg-white p-8 rounded-xl shadow-sm border border-stone-200">
+                <div class="max-w-3xl mb-8">
+                    <h2 class="text-2xl font-bold text-stone-900 mb-3">Market Intel: Addressing the Crisis</h2>
+                    <p class="text-stone-600 leading-relaxed">
+                        Ontario landlords are currently facing the worst LTB backlog in history. Marketing efforts will focus on <strong>Eviction Prevention</strong> through superior document verification.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-red-100 flex items-center justify-center text-red-600 font-bold text-lg">!</div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-bold text-stone-900">The 9-Month Risk</h4>
+                                <p class="text-sm text-stone-600 mt-1">LTB delays for non-payment are averaging 7-9 months. One bad tenant can cost a GTA landlord $30k+ in lost revenue and legal fees.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-stone-100 flex items-center justify-center text-stone-600 font-bold text-lg">?</div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-bold text-stone-900">PDF Fraud Surge</h4>
+                                <p class="text-sm text-stone-600 mt-1">Doctored Equifax reports and fake bank statements are rampant. Elite Tenants bypasses PDFs by verifying raw banking data via AI.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-stone-50 p-6 rounded-lg border border-stone-100">
+                        <h4 class="text-center text-sm font-semibold text-stone-700 mb-4">Time Investment vs. Risk Mitigation</h4>
+                        <div class="chart-container">
+                            <canvas id="marketChart"></canvas>
+                        </div>
+                        <p class="text-center text-xs text-stone-400 mt-4">Comparing months of LTB wait vs. minutes of Elite Screening.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: 3-MONTH ROADMAP -->
+        <section id="view-roadmap" class="hidden fade-in space-y-6">
+            <div class="bg-white p-8 rounded-xl shadow-sm border border-stone-200">
+                <h2 class="text-2xl font-bold text-stone-900 mb-6">Interactive Roadmap (Jan - Mar)</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Jan -->
+                    <div class="p-6 rounded-lg border border-stone-200 bg-stone-50">
+                        <div class="text-xs font-bold text-stone-400 uppercase tracking-widest mb-2">Phase 01 • JAN</div>
+                        <h3 class="text-lg font-bold text-stone-900 mb-3">Foundation</h3>
+                        <p class="text-sm text-stone-600 mb-4">Establishing the "Smarter Evaluation" brand pillars. Focus on AI screening and basic workflow.</p>
+                        <ul class="text-xs text-stone-500 space-y-2">
+                            <li class="flex items-center"><span class="mr-2">●</span> "A credit score isn't the story"</li>
+                            <li class="flex items-center"><span class="mr-2">●</span> Launch LinkedIn B2B Presence</li>
+                            <li class="flex items-center"><span class="mr-2">●</span> Tenant Credit Builder Intro</li>
+                        </ul>
+                    </div>
+                    <!-- Feb -->
+                    <div class="p-6 rounded-lg border-2 border-stone-900 bg-white shadow-md scale-105 z-10">
+                        <div class="text-xs font-bold text-stone-900 uppercase tracking-widest mb-2">Phase 02 • FEB</div>
+                        <h3 class="text-lg font-bold text-stone-900 mb-3">Risk & Security</h3>
+                        <p class="text-sm text-stone-600 mb-4">Aggressive focus on Fraud Prevention. Deconstructing fake documents to build authority.</p>
+                        <ul class="text-xs text-stone-800 space-y-2 font-medium">
+                            <li class="flex items-center"><span class="mr-2 text-red-500">●</span> Spotting Fake Paystubs Series</li>
+                            <li class="flex items-center"><span class="mr-2 text-red-500">●</span> LTB Survival Guide for Landlords</li>
+                            <li class="flex items-center"><span class="mr-2 text-red-500">●</span> "Professional Tenant" Red Flags</li>
+                        </ul>
+                    </div>
+                    <!-- Mar -->
+                    <div class="p-6 rounded-lg border border-stone-200 bg-stone-50">
+                        <div class="text-xs font-bold text-stone-400 uppercase tracking-widest mb-2">Phase 03 • MAR</div>
+                        <h3 class="text-lg font-bold text-stone-900 mb-3">Scale & Speed</h3>
+                        <p class="text-sm text-stone-600 mb-4">Targeting Property Managers and portfolios. Positioning for the Spring market rush.</p>
+                        <ul class="text-xs text-stone-500 space-y-2">
+                            <li class="flex items-center"><span class="mr-2">●</span> The "10-Minute Lease" Process</li>
+                            <li class="flex items-center"><span class="mr-2">●</span> Centralized Workflow for PMs</li>
+                            <li class="flex items-center"><span class="mr-2">●</span> Spring Vacancy Filling Strategy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: CONTENT STRATEGY -->
+        <section id="view-content" class="hidden fade-in space-y-6">
+            <div class="bg-white p-8 rounded-xl shadow-sm border border-stone-200">
+                <div class="flex flex-col md:flex-row md:items-center justify-between mb-8">
+                    <h2 class="text-2xl font-bold text-stone-900">Cross-Platform Tactical Plan</h2>
+                    <div class="flex flex-wrap gap-2 mt-4 md:mt-0">
+                        <button onclick="filterContent('all')" class="filter-btn px-4 py-1.5 rounded-full text-sm bg-stone-900 text-white transition">All</button>
+                        <button onclick="filterContent('linkedin')" class="filter-btn px-4 py-1.5 rounded-full text-sm bg-white border border-stone-200 text-stone-600 hover:bg-stone-50 transition">LinkedIn</button>
+                        <button onclick="filterContent('instagram')" class="filter-btn px-4 py-1.5 rounded-full text-sm bg-white border border-stone-200 text-stone-600 hover:bg-stone-50 transition">Instagram</button>
+                        <button onclick="filterContent('tiktok')" class="filter-btn px-4 py-1.5 rounded-full text-sm bg-white border border-stone-200 text-stone-600 hover:bg-stone-50 transition">TikTok</button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="content-grid">
+                    <!-- LinkedIn -->
+                    <div class="content-card linkedin p-5 rounded-xl border border-stone-100 bg-white hover:shadow-md transition">
+                        <div class="flex justify-between mb-3">
+                            <span class="text-xs font-bold text-blue-600 uppercase">LinkedIn • Jan</span>
+                        </div>
+                        <h4 class="font-bold text-stone-900 mb-2 leading-tight">Smarter Evaluation Pillar</h4>
+                        <p class="text-sm text-stone-600 mb-4">Focus on AI-Powered Screening. Headline: "A credit score isn't the full story."</p>
+                        <div class="bg-stone-50 p-3 rounded text-xs text-stone-500 italic">"Reviewing applications shouldn't feel like detective work."</div>
+                    </div>
+                    <!-- Instagram -->
+                    <div class="content-card instagram p-5 rounded-xl border border-stone-100 bg-white hover:shadow-md transition">
+                        <div class="flex justify-between mb-3">
+                            <span class="text-xs font-bold text-pink-500 uppercase">Instagram • Jan</span>
+                        </div>
+                        <h4 class="font-bold text-stone-900 mb-2 leading-tight">Simple Workflow Carousel</h4>
+                        <p class="text-sm text-stone-600 mb-4">Slide 1: Send Link. Slide 2: We Screen. Slide 3: Review Results.</p>
+                        <div class="bg-stone-50 p-3 rounded text-xs text-stone-500 italic">"Built for busy landlords. Clean, beige, professional visuals."</div>
+                    </div>
+                    <!-- TikTok -->
+                    <div class="content-card tiktok p-5 rounded-xl border border-stone-100 bg-white hover:shadow-md transition">
+                        <div class="flex justify-between mb-3">
+                            <span class="text-xs font-bold text-stone-900 uppercase">TikTok • Feb</span>
+                        </div>
+                        <h4 class="font-bold text-stone-900 mb-2 leading-tight">Document Red Flag ASMR</h4>
+                        <p class="text-sm text-stone-600 mb-4">Fast-paced cuts of spotting pixelated fonts on fake bank statements.</p>
+                        <div class="bg-stone-50 p-3 rounded text-xs text-stone-500 italic">"If they hand you a paper credit report... RUN. 🚩"</div>
+                    </div>
+                    <!-- LinkedIn Feb -->
+                    <div class="content-card linkedin p-5 rounded-xl border border-stone-100 bg-white hover:shadow-md transition">
+                        <div class="flex justify-between mb-3">
+                            <span class="text-xs font-bold text-blue-600 uppercase">LinkedIn • Feb</span>
+                        </div>
+                        <h4 class="font-bold text-stone-900 mb-2 leading-tight">LTB Survival Case Study</h4>
+                        <p class="text-sm text-stone-600 mb-4">Deep dive into a $25,000 loss story caused by a "Professional Tenant".</p>
+                        <div class="bg-stone-50 p-3 rounded text-xs text-stone-500 italic">"Verification is cheaper than eviction. Data vs. Guesswork."</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: GROWTH ENGINE -->
+        <section id="view-growth" class="hidden fade-in space-y-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <!-- Ad Budget Tool -->
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-stone-200">
+                    <h2 class="text-2xl font-bold text-stone-900 mb-4">Paid Ad Strategy Calculator</h2>
+                    <p class="text-sm text-stone-500 mb-8">Select a monthly spend tier to see estimated reach in the Ontario/GTA market.</p>
+
+                    <div class="flex space-x-2 mb-8 bg-stone-100 p-1 rounded-lg">
+                        <button onclick="updateBudget('starter')" class="budget-btn flex-1 py-2 rounded-md text-sm font-medium transition bg-white shadow text-stone-900">Starter</button>
+                        <button onclick="updateBudget('growth')" class="budget-btn flex-1 py-2 rounded-md text-sm font-medium transition text-stone-500">Growth</button>
+                        <button onclick="updateBudget('scale')" class="budget-btn flex-1 py-2 rounded-md text-sm font-medium transition text-stone-500">Scale</button>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="bg-stone-50 p-4 rounded-lg">
+                            <div class="text-xs text-stone-500 uppercase mb-1">Monthly Spend</div>
+                            <div id="val-spend" class="text-2xl font-bold text-stone-900">$1,500</div>
+                        </div>
+                        <div class="bg-stone-50 p-4 rounded-lg">
+                            <div class="text-xs text-stone-500 uppercase mb-1">Est. Reach (GTA)</div>
+                            <div id="val-imps" class="text-2xl font-bold text-stone-900">75,000</div>
+                        </div>
+                    </div>
+
+                    <div class="chart-container h-64">
+                        <canvas id="budgetChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Influencer Targets -->
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-stone-200">
+                    <h2 class="text-2xl font-bold text-stone-900 mb-4">Influencer Targets (Ontario)</h2>
+                    <p class="text-sm text-stone-500 mb-8">Prioritize "Real Estate Educators" and "Paralegals" for maximum trust transfer.</p>
+
+                    <div class="space-y-4">
+                        <div class="flex items-center p-4 border border-stone-100 rounded-lg hover:border-stone-400 transition cursor-default">
+                            <div class="h-10 w-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold mr-4">TS</div>
+                            <div>
+                                <h4 class="font-bold text-stone-900 leading-none">Tom Storey</h4>
+                                <p class="text-xs text-stone-500 mt-1">GTA Market Expert • Youtube/IG</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-4 border border-stone-100 rounded-lg hover:border-stone-400 transition cursor-default">
+                            <div class="h-10 w-10 bg-stone-100 rounded-full flex items-center justify-center text-stone-600 font-bold mr-4">ML</div>
+                            <div>
+                                <h4 class="font-bold text-stone-900 leading-none">Mark Loeffler</h4>
+                                <p class="text-xs text-stone-500 mt-1">Ontario Investor Education • Youtube</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-4 border border-stone-100 rounded-lg hover:border-stone-400 transition cursor-default">
+                            <div class="h-10 w-10 bg-red-50 rounded-full flex items-center justify-center text-red-600 font-bold mr-4">LP</div>
+                            <div>
+                                <h4 class="font-bold text-stone-900 leading-none">GTA Paralegal Network</h4>
+                                <p class="text-xs text-stone-500 mt-1">Focus on LTB Experts • TikTok/LinkedIn</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-stone-900 text-stone-400 py-10 mt-20 border-t border-stone-800">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-sm font-semibold text-stone-200">Elite Tenants Q1 Strategic Growth Plan</p>
+            <p class="text-xs mt-2">Developed for Elite Tenants • Prepared by 852Tangram</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // --- Navigation Logic ---
+        function navigate(viewId) {
+            document.querySelectorAll('main > section').forEach(s => s.classList.add('hidden'));
+            document.getElementById('view-' + viewId).classList.remove('hidden');
+
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('nav-active'));
+            const activeBtn = document.getElementById('btn-' + viewId);
+            if(activeBtn) activeBtn.classList.add('nav-active');
+
+            window.dispatchEvent(new Event('resize'));
+        }
+
+        // --- Content Filter Logic ---
+        function filterContent(platform) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-stone-900', 'text-white');
+                btn.classList.add('bg-white', 'text-stone-600');
+            });
+            event.target.classList.remove('bg-white', 'text-stone-600');
+            event.target.classList.add('bg-stone-900', 'text-white');
+
+            const cards = document.querySelectorAll('.content-card');
+            cards.forEach(card => {
+                if (platform === 'all' || card.classList.contains(platform)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // --- Charts Initialization ---
+        let marketChart, budgetChart;
+
+        const budgetData = {
+            starter: { spend: '$1,500', imps: '75,000', split: [60, 20, 20] },
+            growth: { spend: '$3,500', imps: '180,000', split: [40, 40, 20] },
+            scale: { spend: '$6,000+', imps: '350,000+', split: [30, 50, 20] }
+        };
+
+        function updateBudget(tier) {
+            const data = budgetData[tier];
+            document.getElementById('val-spend').innerText = data.spend;
+            document.getElementById('val-imps').innerText = data.imps;
+
+            document.querySelectorAll('.budget-btn').forEach(b => {
+                b.classList.remove('bg-white', 'shadow', 'text-stone-900');
+                b.classList.add('text-stone-500');
+            });
+            event.target.classList.add('bg-white', 'shadow', 'text-stone-900');
+            event.target.classList.remove('text-stone-500');
+
+            budgetChart.data.datasets[0].data = data.split;
+            budgetChart.update();
+        }
+
+        window.onload = function() {
+            // Market Chart
+            const ctxMarket = document.getElementById('marketChart').getContext('2d');
+            marketChart = new Chart(ctxMarket, {
+                type: 'bar',
+                data: {
+                    labels: ['LTB Backlog', 'Elite Screening'],
+                    datasets: [{
+                        label: 'Time Cost',
+                        data: [8, 0.1],
+                        backgroundColor: ['#EF4444', '#1C1917'],
+                        borderRadius: 6,
+                        barThickness: 40
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true, title: { display: true, text: 'Months' } }
+                    }
+                }
+            });
+
+            // Budget Chart
+            const ctxBudget = document.getElementById('budgetChart').getContext('2d');
+            budgetChart = new Chart(ctxBudget, {
+                type: 'doughnut',
+                data: {
+                    labels: ['IG/FB', 'LinkedIn', 'TikTok'],
+                    datasets: [{
+                        data: [60, 20, 20],
+                        backgroundColor: ['#EC4899', '#2563EB', '#1C1917'],
+                        borderWidth: 0,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: { position: 'right', labels: { boxWidth: 12, font: { size: 10 } } }
+                    }
+                }
+            });
+        };
+    </script>
+</body>
+</html>
